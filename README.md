@@ -6,4 +6,4 @@ Air Patterns Visualization
 - [x] Read csv file
 - [x] Display mutiple markers from csv file
 - [x] Customize marker icon
-- [ ] Deploy to a cloud host
+- [x] Deploy to a cloud host
