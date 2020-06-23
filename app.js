@@ -26,7 +26,7 @@ function initMap() {
     // airports is an array of airports [code, lat, lng]
     var airports = d3.csvParseRows(content);
     
-    var airportIcon = "http://127.0.0.1:5500/airport-icon.png";
+    var airportIcon = "./airport-icon.png";
 
     // display airports on the map
     for (airport of airports) {
