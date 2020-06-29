@@ -30,7 +30,7 @@ function initMap() {
     // display airports on the map
     var markers = airports.map((airport, i) => new google.maps.Marker({
         position: { lat: parseFloat(airport[1]), lng: parseFloat(airport[2]) },
-        // label: airport[0]
+        label: airport[0]
     }));
 
     var markerCluster = new MarkerClusterer(map, markers, 
