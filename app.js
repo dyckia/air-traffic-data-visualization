@@ -4,8 +4,7 @@ function readCSVFile(file) {
     var content;
     rawFile.onreadystatechange = function() {
         if (rawFile.readyState === 4) {
-            if (rawFile.status === 200 || rawFile.status === 0) 
-            {
+            if (rawFile.status === 200 || rawFile.status === 0) {
                 content = rawFile.responseText;
             }
         }
@@ -29,12 +28,11 @@ function initMap() {
     var airportIcon = "./airport-icon.png";
 
     // display airports on the map
-    for (airport of airports) {
-        var marker = new google.maps.Marker({
-            position: { lat: parseFloat(airport[1]), lng: parseFloat(airport[2]) },
-            map: map,
-            title: airport[0],
-            icon: airportIcon
-        });
-    }
+    var markers = airports.map((airport, i) => new google.maps.Marker({
+        position: { lat: parseFloat(airport[1]), lng: parseFloat(airport[2]) },
+        // label: airport[0]
+    }));
+
+    var markerCluster = new MarkerClusterer(map, markers, 
+        { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 }
