@@ -21,7 +21,7 @@ function initMap() {
     });
 
     // load airport locations from csv file
-    var content = readCSVFile("./airports_us.csv");
+    var content = readCSVFile("./airports_intl.csv");
     // airports is an array of airports [code, lat, lng]
     var airports = d3.csvParseRows(content);
     
