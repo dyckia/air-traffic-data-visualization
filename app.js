@@ -33,6 +33,36 @@ function initMap() {
         label: airport[0]
     }));
 
+    JFK = { lat: 40.63980103, lng: -73.77890015 }
+    LAX = { lat: 33.94250107, lng: -118.4079971 } 
+    SEA = { lat: 47.44900131, lng: -122.3089981 } 
+    MIA = { lat: 25.79319954, lng: -80.29060364 } 
+    MSP = { lat: 44.88199997, lng: -93.22180176 }
+    LAS = { lat: 36.08010101, lng: -115.1520004 } 
+    DWT = { lat: 42.21239853, lng: -83.35340118 }
+    IAH = { lat: 29.9843998, lng: -95.34140015 }
+    PDX = { lat: 45.58869934, lng: -122.5979996 }
+
+    var paths = [
+        [[JFK, LAX], 14, '#fc0303'],
+        [[SEA, LAS], 8, '#fc8803'],
+        [[MSP, IAH], 3, '#03cafc'],
+        [[JFK, MIA], 6, '#67fc03'],
+        [[DWT, PDX], 5, '03fce3'],
+    ];
+
+    for (path of paths) {
+        var line = new google.maps.Polyline({
+            path: path[0],
+            geodesic: true,
+            strokeColor: '#10bbe6',
+            strokeOpacity: path[1] / 14,
+            strokeWeight: 5
+        });
+
+        line.setMap(map);
+    }
+
     var markerCluster = new MarkerClusterer(map, markers, 
         { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 }
