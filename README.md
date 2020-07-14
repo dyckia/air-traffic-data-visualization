@@ -16,3 +16,4 @@ Air Patterns Visualization
 
 **Ver. 0.2**
 - [x] Display flight routes
+- [ ] Read traffic data
