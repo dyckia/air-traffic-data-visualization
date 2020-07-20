@@ -16,4 +16,9 @@ Air Patterns Visualization
 
 **Ver. 0.2**
 - [x] Display flight routes
-- [ ] Read traffic data
+- [x] Read traffic data from csv file
+- [x] Aggregate duplicated traffics
+
+**Ver. 0.2.5**
+- [x] Change map styles
+- [x] Chnage airport icons
