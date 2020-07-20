@@ -310,7 +310,7 @@ function initMap() {
 
     // initialize the map
     const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 23.715736, lng: -117.161087 },
+        center: { lat: 38.024009, lng: -97.081117 },
         zoom: 4,
         styles: styles
     });
@@ -318,7 +318,7 @@ function initMap() {
     const airports = getAirports("airports-intl.csv");
     // const airports = getAirports("dummy-airports.csv");
     // custom airport icon
-    const airportIcon = "./red-dot.png";
+    const airportIcon = "./assets/red-dot.png";
 
     // display airports on the map
     for (const property in airports) {
@@ -347,6 +347,7 @@ function initMap() {
     
     const paths = getPaths("traffics-us.csv");
     for (path of paths) {
+        //TODO debug use
         if (typeof airports[path[0]] == 'undefined') console.log(path[0]);
         if (typeof airports[path[1]] == 'undefined') console.log(path[1]);
         const endPoints = [airports[path[0]].geo, airports[path[1]].geo];
