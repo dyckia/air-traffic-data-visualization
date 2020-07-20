@@ -63,7 +63,6 @@ function getPaths(filename) {
         .split(/\n/)
         .map(row => row.split(/,/))
         .filter(row => row[1] != 0);
-    console.log(paths);
     return paths;
 }
 
@@ -292,13 +291,27 @@ function getStyles() {
     ]
 }
 
+// TODO fine tune opacity
+// return opacity based on traffice amount
+function getOpacity(n) {
+    if (n < 100) return 0.1;
+    else if (n < 999) return 0.15;
+    else if (n < 5000) return 0.2;
+    else if (n < 10000) return 0.25;
+    else if (n < 20000) return 0.3;
+    else if (n < 30000) return 0.35;
+    else if (n < 40000) return 0.4;
+    else if (n < 50000) return 0.45;
+}
+
+// main function
 function initMap() {
     const styles = getStyles();
 
     // initialize the map
     const map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 23.715736, lng: -117.161087 },
-        zoom: 2,
+        zoom: 4,
         styles: styles
     });
 
@@ -337,12 +350,13 @@ function initMap() {
         if (typeof airports[path[0]] == 'undefined') console.log(path[0]);
         if (typeof airports[path[1]] == 'undefined') console.log(path[1]);
         const endPoints = [airports[path[0]].geo, airports[path[1]].geo];
+        const opacity = getOpacity(path[2]);
         const line = new google.maps.Polyline({
             path: endPoints,
             geodesic: true,
             strokeColor: '#78c2b7',
-            strokeOpacity: parseInt(path[2]) / 49658,
-            strokeWeight: 0.8
+            strokeOpacity: opacity,
+            strokeWeight: 0.6
         });
         line.setMap(map);
     }
