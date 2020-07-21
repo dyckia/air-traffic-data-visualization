@@ -13,6 +13,11 @@
 
 <body>
   <div id="map"></div>
+  <div id="tooltip" style="display: none; left: 723px; top: 75px;">Tooltip</div>
+  <script>
+    let mapDiv = document.getElementById("map");
+    mapDiv.addEventListener("mousemove", updateMousePos);
+  </script>
 </body>
 
 </html>

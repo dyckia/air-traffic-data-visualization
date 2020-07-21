@@ -1,3 +1,13 @@
+// global variable to store mouse position
+MOUSEPOS = {"x": 0, "y": 0}
+
+// track mouse position
+function updateMousePos(event) {
+    MOUSEPOS.x = event.clientX;
+    MOUSEPOS.y = event.clientY;
+}
+
+
 // read given csv file
 function readCSVFile(file) {
     const rawFile = new XMLHttpRequest();
@@ -14,13 +24,14 @@ function readCSVFile(file) {
     return content;
 }
 
+
 // return a json object of airports
 function getAirports(filename) {
     /*
         {
         JFK: {
             code: JFK,
-            geo: { lat: 40.63980103, lng: -73.77890015 }
+            pos: { lat: 40.63980103, lng: -73.77890015 }
         },
         LAX: {
             ...
@@ -35,7 +46,7 @@ function getAirports(filename) {
         const parts = line.split(/,/);
         obj[parts[0].trim()] = {
             code: parts[0].trim(),
-            geo: {
+            pos: {
                 lat: +parts[1],
                 lng: +parts[2],
             }
@@ -45,6 +56,7 @@ function getAirports(filename) {
     // console.log(airports);
     return airports;
 }
+
 
 // return an array of paths
 function getPaths(filename) {
@@ -65,6 +77,7 @@ function getPaths(filename) {
         .filter(row => row[1] != 0);
     return paths;
 }
+
 
 // return maps styles
 function getStyles() {
@@ -291,6 +304,7 @@ function getStyles() {
     ]
 }
 
+
 // TODO fine tune opacity
 // return opacity based on traffice amount
 function getOpacity(n) {
@@ -303,6 +317,22 @@ function getOpacity(n) {
     else if (n < 40000) return 0.4;
     else if (n < 50000) return 0.45;
 }
+
+
+function showTooltip(event, code) {
+    const tooltip = document.getElementById('tooltip');
+    tooltip.style.display = 'block';
+    tooltip.style.left = MOUSEPOS.x + 5 + 'px';
+    tooltip.style.top = MOUSEPOS.y + 5 + 'px';
+    tooltip.innerHTML = code;
+}
+
+
+function hideTooltip(event) {
+    const tooltip = document.getElementById('tooltip');
+    tooltip.style.display = 'none';
+}
+
 
 // main function
 function initMap() {
@@ -323,20 +353,19 @@ function initMap() {
     // display airports on the map
     for (const property in airports) {
         const marker = new google.maps.Marker({
-            position: airports[property].geo,
+            position: airports[property].pos,
             icon: airportIcon,
             map: map
         });
-        marker.addListener('mouseover', function() {
-            console.log("haha")
-        })
+        marker.addListener('mousemove', showTooltip.bind(null, event, airports[property].code));
+        marker.addListener('mouseout', hideTooltip);
     }
 
     // display marker clusters
     // const markers = []
     // for (const property in airports) {
     //     const marker = new google.maps.Marker({
-    //         position: airports[property].geo,
+    //         position: airports[property].pos,
     //         label: airports[property].code
     //     });
     //     markers.push(marker);
@@ -350,7 +379,7 @@ function initMap() {
         //TODO debug use
         if (typeof airports[path[0]] == 'undefined') console.log(path[0]);
         if (typeof airports[path[1]] == 'undefined') console.log(path[1]);
-        const endPoints = [airports[path[0]].geo, airports[path[1]].geo];
+        const endPoints = [airports[path[0]].pos, airports[path[1]].pos];
         const opacity = getOpacity(path[2]);
         const line = new google.maps.Polyline({
             path: endPoints,

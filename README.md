@@ -22,3 +22,4 @@ Air Patterns Visualization
 **Ver. 0.2.5**
 - [x] Change map styles
 - [x] Chnage airport icons
+- [x] Display airport code dynamically

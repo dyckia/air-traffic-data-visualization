@@ -4,10 +4,22 @@
   height: 100%;
 }
 
-/* Optional: Makes the sample page fill the window. */
+/* Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+#tooltip {
+    position: absolute;
+    z-index: 1;
+    background: #494949;
+    color: #FFF;
+    font-family: sans-serif;
+    font-size: 12px;
+    padding: 6px;
+    pointer-events: none;
+    opacity: 80%;
 }
