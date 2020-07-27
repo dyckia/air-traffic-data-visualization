@@ -374,13 +374,14 @@ function initMap() {
     // const markerCluster = new MarkerClusterer(map, markers, 
     //     { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
     
-    const paths = getPaths("traffics-us.csv");
+    const paths = getPaths("traffics-intl.csv");
     for (path of paths) {
         //TODO debug use
         if (typeof airports[path[0]] == 'undefined') console.log(path[0]);
         if (typeof airports[path[1]] == 'undefined') console.log(path[1]);
         const endPoints = [airports[path[0]].pos, airports[path[1]].pos];
-        const opacity = getOpacity(path[2]);
+        // const opacity = getOpacity(path[2]);
+        const opacity = path[2] / 74993493;
         const line = new google.maps.Polyline({
             path: endPoints,
             geodesic: true,
