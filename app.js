@@ -1,5 +1,5 @@
 // global variable to store mouse position
-MOUSEPOS = {"x": 0, "y": 0}
+const MOUSEPOS = {"x": 0, "y": 0}
 
 // track mouse position
 function updateMousePos(event) {
@@ -307,15 +307,27 @@ function getStyles() {
 
 // TODO fine tune opacity
 // return opacity based on traffice amount
-function getOpacity(n) {
-    if (n < 100) return 0.1;
+function getDomesticOpacity(n) {
+    if (n < 100) return 0.125;
     else if (n < 999) return 0.15;
-    else if (n < 5000) return 0.2;
-    else if (n < 10000) return 0.25;
-    else if (n < 20000) return 0.3;
-    else if (n < 30000) return 0.35;
-    else if (n < 40000) return 0.4;
-    else if (n < 50000) return 0.45;
+    else if (n < 5000) return 0.175;
+    else if (n < 10000) return 0.2;
+    else if (n < 20000) return 0.225;
+    else if (n < 30000) return 0.25;
+    else if (n < 40000) return 0.275;
+    else if (n < 50000) return 0.3;
+}
+
+
+function getInternationalOpacity(n) {
+    if (n < 1000) return 0.05;
+    else if (n < 10000) return 0.1;
+    else if (n < 100000) return 0.15;
+    else if (n < 1000000) return 0.2;
+    else if (n < 3000000) return 0.225;
+    else if (n < 4000000) return 0.25;
+    else if (n < 5000000) return 0.275;
+    else if (n < 8000000) return 0.3;
 }
 
 
@@ -373,21 +385,30 @@ function initMap() {
     
     // const markerCluster = new MarkerClusterer(map, markers, 
     //     { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-    
-    const paths = getPaths("traffics-intl.csv");
+
+    let paths;
+    let getOpacity;
+
+    if (isDomestic) {
+        paths = getPaths("traffics-us.csv");
+        getOpacity = getDomesticOpacity;
+    } else {
+        paths = getPaths("traffics-intl.csv");
+        getOpacity = getInternationalOpacity;
+    }
+
     for (path of paths) {
-        //TODO debug use
+        // debug use
         if (typeof airports[path[0]] == 'undefined') console.log(path[0]);
         if (typeof airports[path[1]] == 'undefined') console.log(path[1]);
         const endPoints = [airports[path[0]].pos, airports[path[1]].pos];
-        // const opacity = getOpacity(path[2]);
-        const opacity = path[2] / 74993493;
+        const opacity = getOpacity(path[2]);
         const line = new google.maps.Polyline({
             path: endPoints,
             geodesic: true,
             strokeColor: '#78c2b7',
             strokeOpacity: opacity,
-            strokeWeight: 0.6
+            strokeWeight: 0.575
         });
         line.setMap(map);
     }

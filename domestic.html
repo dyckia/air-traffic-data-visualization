@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Air Travel Patterns Visualization</title>
+  <title>Domestic Airline Network</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHj1ESW8RyuLMcCwhBgpHIYAHX0aLOIb0&callback=initMap&libraries=&v=weekly"></script>
   <link rel="stylesheet" type="text/css" href="./style.css" />
@@ -13,6 +13,7 @@
   <div id="map"></div>
   <div id="tooltip" style="display: none; left: 723px; top: 75px;">Tooltip</div>
   <script>
+    const isDomestic = true;
     let mapDiv = document.getElementById("map");
     mapDiv.addEventListener("mousemove", updateMousePos);
   </script>
