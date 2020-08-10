@@ -1,4 +1,4 @@
-US max passenger:
+US max passenger:496581
 International max passenger: 74993493
 
 US Airports Added
