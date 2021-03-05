@@ -1,5 +1,7 @@
 # A Performant Approach to Visualize Large Scale Airline Network of United States
 
+![](assets/screen-shot.png)
+
 ## Abstract 
 
 This project presents a highly performant approach to visualize the large scale airline network of United States. In order to achieve high performance on the large scale data set, a wide variety of visualization techniques are tested and compared to improve the eﬃciency of data display, such as data pre-processing, clustering, caching, dynamic content display, etc. The graphical user interface is also ﬁne-tuned to further enhance information’s density and conciseness. The ﬁnal web application provides an eﬃcient, concise and interactive environment to visualize the complex airline network of United States.
