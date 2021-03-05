@@ -7,10 +7,7 @@ This project presents a highly performant approach to visualize the large scale 
 **Keywords:** Airline Network, Data Visualization, Large Scale Data
 
 ## Demo
-[https://dyckia.github.io/air-travel-patterns-visualization/](https://dyckia.github.io/air-travel-patterns-visualization/)
-
-## Thesis
-[https://github.com/dyckia/air-travel-patterns-visualization/blob/master/thesis.pdf](https://github.com/dyckia/air-travel-patterns-visualization/blob/master/thesis.pdf)
+[https://dyckia.github.io/air-traffic-data-visualization/](https://dyckia.github.io/air-traffic-data-visualization/)
 
 ## Work log
 **Ver. 0.1**
